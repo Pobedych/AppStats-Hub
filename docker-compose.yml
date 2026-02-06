@@ -1,0 +1,46 @@
+﻿version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      target: backend
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  ai:
+    build:
+      context: .
+      target: ai
+    ports:
+      - "8001:8001"
+
+  frontend:
+    build:
+      context: .
+      target: frontend
+    environment:
+      VITE_API_URL: "http://localhost:8000"
+      VITE_AI_URL: "http://localhost:8001"
+    ports:
+      - "8888:8888"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

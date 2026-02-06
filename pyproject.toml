@@ -1,0 +1,18 @@
+﻿[project]
+name = "statistics"
+version = "0.1.0"
+description = "Minimal multi-service setup: backend + frontend + telegram bot + ai"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3.15.0",
+    "fastapi>=0.128.1",
+    "httpx>=0.28.1",
+    "sqlalchemy>=2.0.46",
+    "uvicorn>=0.40.0",
+    "pydantic-settings>=2.0",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.1",
+    "passlib[bcrypt]>=1.7.4",
+    "email-validator>=2.0",
+
+]
