@@ -1,5 +1,5 @@
-from sqlalchemy.orm import Session
 from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from apps.backend.app.models.user import User
 from apps.backend.app.schemas.users import CreateUser
@@ -14,9 +14,9 @@ def create_user(db: Session, data: CreateUser) -> User:
     user = User(
         email=data.email,
         username=data.username,
-        hashed_password=hash_password(data.password),
+        password_hash=hash_password(data.password),
         is_active=True,
-        is_superuser=False,
+        is_premium=False,
     )
     db.add(user)
     db.commit()

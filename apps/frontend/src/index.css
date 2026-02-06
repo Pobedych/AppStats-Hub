@@ -1,0 +1,14 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #070707;
+  overflow: hidden; /* убираем прокрутку */
+}
+
+/* на всякий: чтобы не появлялись белые поля из-за box sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}

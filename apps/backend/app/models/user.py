@@ -1,5 +1,4 @@
-from sqlalchemy import String, Column, Integer, DateTime, Boolean
-from datetime import datetime, timezone
+from sqlalchemy import String, Column, Integer, DateTime, Boolean, func
 from apps.backend.app.db.base import Base
 
 class User(Base):
@@ -9,7 +8,7 @@ class User(Base):
     email = Column(String(255), unique=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
 
-    fullname = Column(String(255), nullable=False)
+    username = Column(String(255), nullable=True)
     age = Column(Integer, nullable=True)
     gender = Column(String, nullable=True)
 
@@ -17,5 +16,5 @@ class User(Base):
     is_active = Column(Boolean, nullable=False, default=True)
     is_premium = Column(Boolean, nullable=False, default=False)
 
-    created_at = Column(DateTime, nullable=False, default=datetime.now(timezone.utc))
-    updated_at = Column(DateTime, nullable=False, default=datetime.now(timezone.utc))
+    created_at = Column(DateTime, nullable=False, server_default=func.now())
+    updated_at = Column(DateTime, nullable=False, server_default=func.now(), onupdate=func.now())

@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 class CreateUser(BaseModel):
     email: EmailStr
     username: str | None = Field(default=None, max_length=50)
-    password: str = Field(min_length=8, max_length=128)
+    password: str = Field(min_length=8, max_length=72)
 
 class ReadUser(BaseModel):
     id: int
